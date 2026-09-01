@@ -31,9 +31,9 @@
       <p class="eyebrow">Punch · Founder's office</p>
       <h1>Founder's office at Punch</h1>
       <p class="dek">
-        Two and a half years, and two fairly different jobs under one title. For the first eighteen
-        months I ran creator acquisition and rebuilt the referral program. For the last six I
-        replaced most of that function with software I wrote myself.
+        Two and a half years, two pretty different jobs under one title. For the first eighteen months I
+        ran creator acquisition and rebuilt the referral program. For the last six I replaced most of
+        that function with software I wrote myself.
       </p>
       <div class="case-meta">
         <span>Apr 2024 – Aug 2026</span>
@@ -47,13 +47,14 @@
       <p>
         I came in to run creator acquisition and spent eighteen months doing it end to end: sourcing,
         screening, deal structuring, and the call on where the next rupee of spend went. Then the jobs
-        started arriving faster than a small team could absorb them, and the honest constraint was that
-        Punch could not hire its way out of any of it.
+        started arriving faster than a small team could absorb them, and Punch genuinely could not hire its way
+        out of any of it.
       </p>
       <p>
-        So I started building the tools instead of briefing them out. The interesting part is not the
-        count. Four of those five systems replaced work I used to do by hand or pay someone else to do,
-        which is an uncomfortable thing to put on a portfolio page and also the most honest thing on it.
+        So I started building the tools myself. I think the interesting part isn't the count, it's that
+        four of those five systems replaced work I used to do by hand or paid someone else for. I
+        made my own function smaller. That's an uncomfortable thing to put on a portfolio page, and
+        it's true.
       </p>
 
       <div class="figures">
@@ -104,8 +105,8 @@
       <p>
         One of those launches generated demand so far past internal projection that account-opening
         infrastructure, untested at that scale, broke under it. About 5,000 signup attempts in
-        24 hours. It is the second time in my career a creator campaign has taken down something I
-        worked on, which makes it a pattern rather than a story.
+        24 hours. That's the second time in my career a creator campaign has taken down something I
+        worked on. Twice makes it a pattern.
       </p>
     </div>
 
@@ -118,7 +119,7 @@
         shot at an outsized reward beats a small guaranteed one.
       </p>
       <p>
-        The design work was mostly in the constraints rather than the mechanic. SEBI and NSE rules on
+        The design work was mostly in the constraints, not the mechanic. SEBI and NSE rules on
         how rewards can be structured are real and unforgiving, so the model had to work with
         <strong>no differentiated reward slabs</strong> and the incentive <strong>capped at the
         referred user's first trade</strong>. It lifted visit-to-account-opening conversion about 5%
@@ -154,10 +155,10 @@
             The search half did what it was supposed to: roughly 3x organic in six months, from
             nothing, on under four hours a week. The GEO half, getting Punch cited by LLMs rather than
             ranked by Google, produced <strong>0 out of 20</strong> across five queries measured
-            against four different models, and it stayed at 0 for four straight months. I published
-            both numbers internally as they were, rather than reframing the second one as an
-            early-stage learning. Knowing the channel was dead while it was still cheap to know is
-            worth more to me than the 3x.
+            against four different models, and it stayed at 0 for four straight months. I published both numbers
+            internally as they were. I didn't reframe the second one as an early-stage learning. I
+            think knowing the channel was dead while it was still cheap to know is worth more than
+            the 3x.
           </p>
         </div>
       </div>
@@ -193,9 +194,9 @@
         </p>
         <p>
           The design decision I'd defend hardest: <strong>Claude never emits a timestamp.</strong> A
-          deterministic resolver converts spoken-phrase anchors into frame numbers, which denies the
-          model the ability to produce that entire class of hallucination rather than asking it to be
-          careful. The QA gate refuses to run without fresh evidence instead of warning and continuing.
+          deterministic resolver converts spoken-phrase anchors into frame numbers. That denies the model the
+          ability to produce that whole class of hallucination. Asking it to be careful is not a
+          control. The QA gate refuses to run without fresh evidence, it doesn't warn and continue.
         </p>
       </div>
 
@@ -235,43 +236,41 @@
         </div>
         <p>
           Sequence design, segmentation, deliverability engineering and the tests, all mine. It is also
-          the only work I did at Punch with a clean funnel attached to it, which is why the experiments
-          are worth walking through rather than summarising.
+          the only work I did at Punch with a clean funnel attached to it, so the experiments are worth
+          walking through properly.
         </p>
         <p>
           <strong>The onboarding sequence.</strong> Five emails. The first went to 761 contacts and
-          opened at 29% with 1.8% clicks; by the fifth it was 619 sends, 10% opens and no clicks at
-          all. That decay is the result. It told me the sequence was too long before anyone had to
-          have an opinion about whether the sequence was too long.
+          opened at 29% with 1.8% clicks, by the fifth it was 619 sends, 10% opens and no clicks at all.
+          That decay is the result. The sequence was too long, and the numbers said so before anyone
+          had to argue about it.
         </p>
         <p>
           <strong>The segmentation.</strong> The target segment came out at 1,908 contacts, derived
           from a 6,387-person Mixpanel cohort minus 13,464 registrants after I found the two groups
-          overlapped about 70%. Skip the overlap check and a large share of that list gets mailed
-          twice, which is how you burn a domain rather than a campaign.
+          overlapped about 70%. Skip the overlap check and a big chunk of that list gets mailed
+          twice. That's how you burn a domain, not just a campaign.
         </p>
         <p>
           <strong>The A/B test.</strong> Concluded 30 April 2026 with <strong>no winner</strong>:
           control 1,497 at 29% opens, variant 660 at 29%. The interesting number there is not 29%, it
           is 1,497 against 660. Loops' own native 50/50 split tool had silently delivered a
-          <strong>69/31 split</strong>. I caught it in the send counts and flagged the vendor's
-          instrument as broken, rather than trusting it and writing up a result that would have been
-          noise either way.
+          <strong>69/31 split</strong>. I caught it in the send counts and flagged the vendor's tool as
+          broken. If I'd trusted it I'd have written up a result that was noise either way.
         </p>
         <p>
           <strong>Deliverability, and one thing I refused to send.</strong> SPF, DKIM and DMARC
           alignment, RFC 8058 one-click unsubscribe, Google Postmaster spam rate held under 0.3%.
-          There was a backlog of roughly 22,000 funded-but-never-traded users that I was asked about
-          and did not blast, because the deliverability damage would have outlasted anything it
-          returned.
+          There was a backlog of roughly 22,000 funded-but-never-traded users that I was asked about and
+          did not blast. The deliverability damage would have outlasted anything it returned.
         </p>
         <div class="caveat">
           <span class="caveat-label">The constraint that shaped all of it</span>
           <p>
-            Loops is <strong>dashboard-only, with no API</strong>. Every send here was manual, which is
-            why this is the one piece of 2026 work with no repository behind it and why the volume is
-            small next to what an automated stack would push. The tests are honest because they were
-            small, not in spite of it.
+            Loops is <strong>dashboard-only, with no API</strong>. Every send here was manual, so this
+            is the one piece of 2026 work with no repository behind it, and the volume is small next
+            to what an automated stack would push. The tests are honest because they were small, not
+            in spite of it.
           </p>
         </div>
       </div>
