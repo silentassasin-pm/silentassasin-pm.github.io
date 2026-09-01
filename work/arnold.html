@@ -32,8 +32,8 @@
       <h1>Arnold</h1>
       <p class="dek">
         A WhatsApp bot that holds six of my friends accountable for going to the gym, charges them
-        fines when they don't, and posts a weekly digest nobody can argue with. It ran live in a real
-        group with real money on the line, which is a very different bar from a demo.
+        fines when they don't, and posts a weekly digest nobody can argue with. It ran live in a real group with real money on the line.
+        That's a very different bar from a demo.
       </p>
       <div class="case-meta">
         <span>TypeScript · SQLite · Baileys</span>
@@ -66,8 +66,8 @@
       </div>
 
       <p>
-        Under it: four persisted state machines that reconcile themselves on boot rather than assuming
-        the process never died, AES-256-GCM encryption on stored credentials, systemd timers with
+        Under it: four persisted state machines that reconcile themselves on boot and never
+        assume the process stayed alive, AES-256-GCM encryption on stored credentials, systemd timers with
         explicitly pinned timezones, and a scheduler that catches up correctly if the host was down when
         a fire time passed. Most of the difficulty in this project turned out to be time, not language.
       </p>
@@ -86,8 +86,8 @@
           Every number is now computed deterministically before the model sees anything. The model's
           only permitted job is to <strong>re-voice a value it was given</strong>, and a post-compose
           audit gate re-checks the outgoing message against the computed figures and
-          <strong>fails closed</strong> on a mismatch, refusing to send rather than sending something
-          wrong. The fix is not a better prompt. It's removing the model's ability to produce that class
+          <strong>fails closed</strong> on a mismatch. If the numbers don't match, nothing
+          goes out. The fix is not a better prompt. It's removing the model's ability to produce that class
           of output at all.
         </p>
       </div>
@@ -95,7 +95,7 @@
         I arrived at the same instinct independently in <a href="/work/punch-ai-systems.html#forge">Forge</a>
         months later, where Claude is structurally never allowed to emit a timestamp. Two different
         systems, same conclusion: decide what the model must not be trusted with, then enforce it in
-        architecture rather than instructions.
+        architecture, not instructions.
       </p>
     </div>
 
@@ -104,8 +104,7 @@
       <p>
         <strong>Paused.</strong> The phone holding Arnold's WhatsApp number was stolen from my house.
         That's the whole reason. It isn't a reliability failure or a product that people stopped using,
-        it worked well for as long as it was live, and restoring it is a pairing problem rather than a
-        rebuild. I'd rather state that plainly than let "paused" imply the more common story.
+        it worked well for as long as it was live, and restoring it is a pairing problem, not a rebuild. I'm saying that plainly because "paused" usually implies the other story.
       </p>
     </div>
 
