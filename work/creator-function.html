@@ -7,6 +7,7 @@
 <meta name="description" content="From one hypothesis in October 2019 to 30-35% of attributable signups at smallcase, then the same problem again at eight-figure scale at Punch.">
 <link rel="stylesheet" href="/site.css?v=9">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="ded01265-19cd-499c-8be3-00ae77779832"></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -145,6 +146,33 @@
     </span>
   </div>
 </footer>
+
+<script>
+/* Scroll depth, reported to Umami as scroll-25/50/75/100. Fires once per
+   threshold per pageview. Time on page reads as 0 for the last page in a
+   session, which is usually a case study, so this is the honest measure of
+   whether anyone reached the bottom. If the beacon is blocked these calls
+   no-op and the page is unaffected. */
+(function () {
+  var marks = [25, 50, 75, 100], hit = {}, timer = null;
+  function check() {
+    var d = document.documentElement;
+    var max = d.scrollHeight - d.clientHeight;
+    var pct = max <= 0 ? 100 : Math.round((d.scrollTop / max) * 100);
+    for (var i = 0; i < marks.length; i++) {
+      if (pct >= marks[i] && !hit[marks[i]]) {
+        hit[marks[i]] = true;
+        try { window.umami && window.umami.track('scroll-' + marks[i]); } catch (e) {}
+      }
+    }
+  }
+  addEventListener('scroll', function () {
+    if (timer) return;
+    timer = setTimeout(function () { timer = null; check(); }, 200);
+  }, { passive: true });
+  addEventListener('load', check);
+})();
+</script>
 
 </body>
 </html>
