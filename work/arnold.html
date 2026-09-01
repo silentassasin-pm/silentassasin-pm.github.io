@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Arnold — Shalabh Jaiswal</title>
+<meta name="description" content="A WhatsApp gym-accountability bot for six real friends, running on its own server. 24,645 lines of TypeScript and one hard rule about what the model is allowed to say.">
+<link rel="stylesheet" href="/site.css?v=8">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap wrap--wide">
+    <a class="masthead-name" href="/">Shalabh Jaiswal</a>
+    <nav class="nav" aria-label="Primary">
+      <a href="/">Work</a>
+      <a href="/resume.html">Resume</a>
+      <a href="https://github.com/silentassasin-pm">GitHub</a>
+      <a href="https://www.linkedin.com/in/shalabh-jaiswal1997/">LinkedIn</a>
+      <a href="https://x.com/Not_so_shalabh">Twitter</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="page">
+  <div class="wrap">
+
+    <div class="case-head">
+      <p class="eyebrow">Personal · 2026</p>
+      <h1>Arnold</h1>
+      <p class="dek">
+        A WhatsApp bot that holds six of my friends accountable for going to the gym, charges them
+        fines when they don't, and posts a weekly digest nobody can argue with. It ran live in a real
+        group with real money on the line, which is a very different bar from a demo.
+      </p>
+      <div class="case-meta">
+        <span>TypeScript · SQLite · Baileys</span>
+        <span>24,645 LOC</span>
+        <span>Own server, Nuremberg</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <p>
+        I built this because gym accountability groups always die the same way, somebody has to be the
+        person who nags, and that person eventually stops. Arnold is that person, and it has no feelings
+        to hurt. It tracks who logged what, assesses fines on a schedule, handles retractions and
+        exemptions in natural language, and sends a Sunday digest.
+      </p>
+
+      <div class="figures">
+        <div class="figure">
+          <span class="n">6</span>
+          <span class="l">Real users in a live group, not test accounts</span>
+        </div>
+        <div class="figure">
+          <span class="n">~40%</span>
+          <span class="l">Test-to-source ratio</span>
+        </div>
+        <div class="figure">
+          <span class="n">4</span>
+          <span class="l">Persisted state machines, surviving restarts and host downtime</span>
+        </div>
+      </div>
+
+      <p>
+        Under it: four persisted state machines that reconcile themselves on boot rather than assuming
+        the process never died, AES-256-GCM encryption on stored credentials, systemd timers with
+        explicitly pinned timezones, and a scheduler that catches up correctly if the host was down when
+        a fire time passed. Most of the difficulty in this project turned out to be time, not language.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>The incident that set the rule</h2>
+      <p>
+        Early on, Arnold told the group a number that was wrong. Not badly formatted, not stale,
+        <strong>invented</strong>. The model had been handed the job of summarising the week and it
+        produced a plausible fine total that matched nothing in the database.
+      </p>
+      <div class="caveat">
+        <span class="caveat-label">What I changed, and why it generalises</span>
+        <p>
+          Every number is now computed deterministically before the model sees anything. The model's
+          only permitted job is to <strong>re-voice a value it was given</strong>, and a post-compose
+          audit gate re-checks the outgoing message against the computed figures and
+          <strong>fails closed</strong> on a mismatch, refusing to send rather than sending something
+          wrong. The fix is not a better prompt. It's removing the model's ability to produce that class
+          of output at all.
+        </p>
+      </div>
+      <p>
+        I arrived at the same instinct independently in <a href="/work/punch-ai-systems.html#forge">Forge</a>
+        months later, where Claude is structurally never allowed to emit a timestamp. Two different
+        systems, same conclusion: decide what the model must not be trusted with, then enforce it in
+        architecture rather than instructions.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Current status</h2>
+      <p>
+        <strong>Paused.</strong> The phone holding Arnold's WhatsApp number was stolen from my house.
+        That's the whole reason. It isn't a reliability failure or a product that people stopped using,
+        it worked well for as long as it was live, and restoring it is a pairing problem rather than a
+        rebuild. I'd rather state that plainly than let "paused" imply the more common story.
+      </p>
+    </div>
+
+    <a class="backlink" href="/">← All work</a>
+
+    <div class="also">
+      <p class="eyebrow">Related</p>
+      <ul>
+        <li><a href="/work/punch-ai-systems.html">Founder's office at Punch</a></li>
+        <li><a href="/work/cortex.html">Cortex, paused by the same stolen phone</a></li>
+      </ul>
+    </div>
+
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap wrap--wide">
+    <span>Shalabh Jaiswal · Bangalore</span>
+    <span class="foot-links">
+      <a href="/resume.html">Resume</a>
+      <a href="mailto:shalabhjaiswal421@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/shalabh-jaiswal1997/">LinkedIn</a>
+      <a href="https://github.com/silentassasin-pm">GitHub</a>
+      <a href="https://x.com/Not_so_shalabh">Twitter</a>
+    </span>
+  </div>
+</footer>
+
+</body>
+</html>

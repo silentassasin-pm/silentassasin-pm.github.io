@@ -1,0 +1,11 @@
+# Hetzner fallback notes. These contain the production IP of the box that also
+# runs Arnold, the SSH user and the key filename. GitHub Pages needs a public
+# repo on the free plan and git history is permanent, so this folder must never
+# be committed. Keep it local.
+deploy/
+
+.DS_Store
+
+# Working notes, kept local: they document open problems and internal
+# critique that do not belong next to the published site.
+README.md

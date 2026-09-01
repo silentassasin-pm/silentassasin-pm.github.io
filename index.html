@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shalabh Jaiswal</title>
+<meta name="description" content="Growth engineer, founder's office at Punch. Six years building growth in Indian fintech, now building the AI systems that run it.">
+<meta property="og:title" content="Shalabh Jaiswal">
+<meta property="og:description" content="Growth engineer, founder's office at Punch. Six years building growth in Indian fintech, now building the AI systems that run it.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="/site.css?v=8">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<main id="main" class="card-page">
+  <div class="wrap">
+
+    <!-- Swap avatar.svg for a real photo: same <img>, new src. Square crop,
+         at least 320px. It renders at 96px so detail above ~400px is wasted. -->
+    <header class="ident">
+      <img class="avatar" src="/me.jpg" width="96" height="96"
+           alt="Shalabh Jaiswal">
+      <h1>Shalabh Jaiswal</h1>
+      <p class="role">Growth engineer, founder's office at Punch. Bangalore, India.</p>
+      <!-- STATUS PHRASE: yours to pick. This one says nothing about looking.
+           The honest alternative is "open to what's next", which is a public
+           signal while the Punch role is still stated in the present tense. -->
+      <p class="status"><span id="clock">Bangalore</span> · building</p>
+    </header>
+
+    <p class="bio">
+      I find the channel before there's a playbook for it, then build what it needs. Six years of
+      that inside Indian fintech, at <a href="/work/creator-function.html">smallcase</a> and then
+      <a href="/work/punch-ai-systems.html">Punch</a>. In February 2026 I didn't know what GitHub
+      was, and since then I've built production systems for video, search, PR and creator discovery,
+      mostly solo. Flunked 11th grade twice, never studied marketing, and cold-messaged a founder on
+      LinkedIn asking to learn for free.
+    </p>
+
+    <div class="index">
+
+      <section class="col">
+        <h2>Work</h2>
+        <ul>
+          <li>
+            <a href="/work/punch-ai-systems.html">Punch</a> — founder's office (2024&ndash;present)
+            <span class="m"><span>~46% of all orders at peak</span></span>
+          </li>
+          <li>
+            <a href="/work/creator-function.html">smallcase</a> — influencer marketing (2019&ndash;2022)
+            <span class="m"><span>30 to 35% of attributable signups</span></span>
+          </li>
+          <li>
+            Finnet Media — COO (2022&ndash;2023)
+            <span class="m"><span>₹20Cr/yr agency</span><span>left at six months</span></span>
+          </li>
+          <li>
+            Cookieman Jamshedpur — promoter (2023&ndash;2024)
+            <span class="m"><span>₹20L in four months</span><span>₹60L ARR</span></span>
+          </li>
+        </ul>
+      </section>
+
+      <section class="col">
+        <h2>What I've built</h2>
+        <ul>
+          <li>
+            <a href="/work/punch-ai-systems.html#punch-seo-geo">punch-seo-geo</a> — SEO and GEO from nothing
+            <span class="m"><span>Punch</span><span>~3x organic, half of it mine</span></span>
+          </li>
+          <li>
+            <a href="/work/punch-ai-systems.html#pr-agent">pr-agent</a> — PR in-house, not the two agencies
+            <span class="m"><span>Punch</span><span>9+ placements, ~₹4.25L</span></span>
+          </li>
+          <li>
+            <a href="/work/punch-ai-systems.html#forge">Forge</a> — video pipeline, twelve stages
+            <span class="m"><span>Punch</span><span>three weeks down to one</span></span>
+          </li>
+          <li>
+            <a href="/work/punch-ai-systems.html#yt-discovery">yt-discovery</a> — finds and screens YouTube creators
+            <span class="m"><span>Punch</span><span>225 channels, all reviewed by hand</span></span>
+          </li>
+          <li>
+            <a href="/work/punch-ai-systems.html#loops">Loops</a> — email lifecycle, end to end
+            <span class="m"><span>Punch</span><span>caught a broken 50/50 split</span></span>
+          </li>
+          <li>
+            <a href="/work/arnold.html">Arnold</a> — gym-accountability bot on WhatsApp
+            <span class="m"><span>personal</span><span>six real users</span></span>
+          </li>
+          <li>
+            <a href="/work/plutus.html">Plutus</a> — acts as my personal wealth manager
+            <span class="m"><span>personal</span><span>44 indicators, used daily</span></span>
+          </li>
+          <li>
+            <a href="/work/cortex.html">Cortex</a> — knowledge-routing Telegram bot
+            <span class="m"><span>personal</span><span>24 days on real users</span></span>
+          </li>
+        </ul>
+      </section>
+
+      <section class="col col--links">
+        <h2>Links</h2>
+        <ul>
+          <li><a href="/resume.html">Resume</a></li>
+          <li><a href="https://github.com/silentassasin-pm">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/shalabh-jaiswal1997/">LinkedIn</a></li>
+          <li><a href="https://x.com/Not_so_shalabh">Twitter</a></li>
+          <li><a href="mailto:shalabhjaiswal421@gmail.com">Email</a></li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<script>
+/* The only JavaScript on the site. If it never runs the line still reads
+   "Bangalore · building" rather than breaking, which is why the fallback text
+   sits in the HTML instead of being written in by the script. Note that the
+   Caddyfile CSP blocks all script execution, so this is inert on the Hetzner
+   path and works on GitHub Pages. */
+(function () {
+  var el = document.getElementById('clock');
+  if (!el) return;
+  try {
+    var t = new Date().toLocaleTimeString('en-IN', {
+      hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'Asia/Kolkata'
+    }).toLowerCase();
+    el.textContent = t + ' in Bangalore';
+  } catch (e) { /* leave the fallback in place */ }
+})();
+</script>
+
+</body>
+</html>

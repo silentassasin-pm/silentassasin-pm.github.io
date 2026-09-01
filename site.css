@@ -1,0 +1,487 @@
+/* ---------------------------------------------------------------------------
+   shalabh.site — shared stylesheet
+
+   Palette, type scale and print rules are carried over from
+   career-next/resume-shalabh-jaiswal.html deliberately, so the site and the
+   resume read as one identity. If you change a colour here, change it there.
+
+   Structure: tokens → base → layout → components → pages → responsive.
+   No build step, no dependencies, no JS. Every page links this one file.
+--------------------------------------------------------------------------- */
+
+/* --- tokens ---------------------------------------------------------------
+   Full light palette lives on bare :root. The dark blocks below redefine only
+   what changes, twice: once for the system preference (guarded so an explicit
+   light choice still wins) and once for an explicit dark choice. Never give a
+   colour its only definition inside a media block.
+-------------------------------------------------------------------------- */
+:root{
+  --paper:#F6F7F5;
+  --paper-edge:#E7E9E4;
+  --ink:#22241F;
+  --ink-soft:#4B4E45;
+  --ink-faint:#6A6E62;
+  --rule:#D3D6CC;
+  --accent:#1F5C42;
+  --accent-soft:#E4EEE7;
+
+  --serif:ui-serif,Georgia,"Iowan Old Style","Palatino Linotype",serif;
+  --sans:-apple-system,"SF Pro Text","Segoe UI",Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,"SF Mono","Cascadia Code",Menlo,Consolas,monospace;
+
+  --measure:44rem;   /* reading column */
+  --wide:58rem;      /* index + wide blocks */
+}
+
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#1B1D19;
+    --paper-edge:#141610;
+    --ink:#EAEBE4;
+    --ink-soft:#B7BAAE;
+    --ink-faint:#949A8B;
+    --rule:#3A3E33;
+    --accent:#6FBE97;
+    --accent-soft:#233229;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#1B1D19;
+  --paper-edge:#141610;
+  --ink:#EAEBE4;
+  --ink-soft:#B7BAAE;
+  --ink-faint:#949A8B;
+  --rule:#3A3E33;
+  --accent:#6FBE97;
+  --accent-soft:#233229;
+}
+
+/* --- base ---------------------------------------------------------------- */
+*{box-sizing:border-box;}
+
+html{
+  /* Anchor links land under the sticky-ish header rather than behind it. */
+  scroll-padding-top:2rem;
+}
+
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:1rem;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+a{color:var(--accent);}
+a:hover{text-decoration-thickness:2px;}
+
+h1,h2,h3{font-family:var(--serif); font-weight:600; letter-spacing:-0.01em; text-wrap:balance;}
+h1{font-size:clamp(2rem,5.5vw,2.7rem); line-height:1.15; margin:0 0 .6rem;}
+h2{font-size:clamp(1.35rem,3.6vw,1.65rem); line-height:1.25; margin:0 0 .7rem;}
+h3{font-size:1.06rem; line-height:1.35; margin:0 0 .35rem;}
+
+p{margin:0 0 1.05rem;}
+p:last-child{margin-bottom:0;}
+
+strong{font-weight:600; color:var(--ink);}
+
+.mono{font-family:var(--mono);}
+
+/* Screen-reader-only. .skip is included here, not just in the :focus rule
+   below, or the skip link renders visibly above the masthead on every page. */
+.sr, .skip{
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;
+}
+.skip:focus{
+  position:fixed; top:.6rem; left:.6rem; width:auto; height:auto;
+  clip:auto; margin:0; padding:.5rem .85rem; z-index:10;
+  background:var(--accent); color:var(--paper); border-radius:4px;
+}
+
+/* --- layout -------------------------------------------------------------- */
+.wrap{
+  max-width:var(--measure);
+  margin:0 auto;
+  padding:0 1.6rem;
+}
+.wrap--wide{max-width:var(--wide);}
+
+.page{padding:3.2rem 0 4.5rem;}
+
+/* --- site header / footer ------------------------------------------------ */
+.masthead{
+  border-bottom:1px solid var(--rule);
+  padding:1.15rem 0;
+  background:var(--paper);
+}
+.masthead .wrap{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:1rem;
+  flex-wrap:wrap;
+}
+.masthead-name{
+  font-family:var(--serif);
+  font-size:1.02rem;
+  font-weight:600;
+  color:var(--ink);
+  text-decoration:none;
+  letter-spacing:-0.01em;
+}
+.masthead-name:hover{color:var(--accent);}
+.nav{
+  display:flex;
+  gap:1.35rem;
+  font-family:var(--mono);
+  font-size:.78rem;
+  letter-spacing:.02em;
+}
+.nav a{
+  color:var(--ink-faint);
+  text-decoration:none;
+  padding-bottom:2px;
+  border-bottom:1px solid transparent;
+}
+.nav a:hover{color:var(--accent); border-color:var(--accent);}
+.nav a[aria-current="page"]{color:var(--ink); border-color:var(--rule);}
+
+.foot{
+  border-top:1px solid var(--rule);
+  margin-top:4rem;
+  padding:2rem 0 3rem;
+  font-size:.85rem;
+  color:var(--ink-faint);
+}
+.foot .wrap{display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap;}
+.foot a{color:var(--ink-faint); text-decoration:none; border-bottom:1px solid var(--rule);}
+.foot a:hover{color:var(--accent); border-color:var(--accent);}
+.foot-links{display:flex; gap:1.1rem; flex-wrap:wrap;}
+
+/* --- eyebrow / section label --------------------------------------------- */
+.eyebrow{
+  font-family:var(--mono);
+  font-size:.72rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  font-weight:600;
+  color:var(--accent);
+  margin:0 0 .9rem;
+}
+
+/* --- home: the index card ------------------------------------------------
+   The homepage is a single card, not a landing page: avatar, name, role, live
+   status, one paragraph, then a three-column index. It carries no masthead and
+   no footer, because at this length the index IS the navigation and a nav bar
+   above it would just be a second copy of the Links column.
+
+   Structural note on why this replaced the previous cards layout: five fat
+   summary cards showed five things and half-answered them, so opening one felt
+   optional. The index shows seventeen items in less vertical space, answers
+   none of them, and puts the proof number in the meta line instead. Depth still
+   exists, it just lives on the case-study pages where it always did.
+-------------------------------------------------------------------------- */
+.card-page{padding:4.5rem 0 5rem;}
+.card-page .wrap{max-width:56rem;}
+
+.ident{text-align:center; margin-bottom:2.4rem;}
+.avatar{
+  width:96px;
+  height:96px;
+  border-radius:22px;
+  object-fit:cover;
+  display:block;
+  margin:0 auto 1.15rem;
+  background:var(--accent-soft);
+}
+.card-page h1{font-size:clamp(1.7rem,4.4vw,2.1rem); margin:0 0 .5rem;}
+
+.role{
+  font-size:1rem;
+  color:var(--ink-soft);
+  margin:0 0 .25rem;
+}
+/* Faint on purpose. It is a signal of life, not a claim, and at full contrast
+   it competes with the role line directly above it. */
+.status{
+  font-family:var(--mono);
+  font-size:.78rem;
+  color:var(--ink-faint);
+  margin:0;
+}
+
+/* Centred as a block, ragged-right as text. Justifying or centring the lines
+   themselves makes a paragraph this long much harder to scan. */
+.bio{
+  max-width:34rem;
+  margin:0 auto 3.4rem;
+  font-size:1.02rem;
+  line-height:1.7;
+  color:var(--ink-soft);
+}
+.bio a{color:var(--ink); text-decoration:underline; text-underline-offset:3px;}
+.bio a:hover{color:var(--accent);}
+
+/* --- the three-column index ---------------------------------------------- */
+.index{
+  display:grid;
+  grid-template-columns:1.15fr 1.5fr .42fr;
+  gap:2.6rem;
+  align-items:start;
+}
+.col h2{
+  font-family:var(--mono);
+  font-size:.72rem;
+  font-weight:600;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin:0 0 1.05rem;
+}
+.col ul{list-style:none; margin:0; padding:0;}
+.col li{
+  margin-bottom:1.05rem;
+  font-size:.92rem;
+  line-height:1.55;
+  color:var(--ink-soft);
+}
+.col li:last-child{margin-bottom:0;}
+.col a{
+  color:var(--ink);
+  font-weight:600;
+  text-decoration:underline;
+  text-underline-offset:3px;
+  text-decoration-thickness:1px;
+}
+.col a:hover{color:var(--accent);}
+
+/* The meta line is where the honesty lives now. The old .caveat block cannot
+   survive this compression, so the caveat is compressed into the status
+   instead: "half of it mine", "under baseline", "has never worked".
+
+   Flex, not flowing text, and this is the fix for a real bug. The separator
+   used to be a literal "·" typed between segments, and 10 of 12 meta lines
+   wrapped, which left the dot stranded at the end of a line pointing at
+   nothing. Here each segment is its own flex item and the dot is a ::before
+   belonging to that item, so it can only ever sit immediately before its own
+   text. A wrapped segment takes its dot with it to the next line.
+
+   Segments are also written to fit: every one is under 34 characters, which
+   holds a single line at this column width. */
+.col .m{
+  display:flex;
+  flex-wrap:wrap;
+  gap:0 .45rem;
+  font-family:var(--mono);
+  font-size:.75rem;
+  line-height:1.5;
+  color:var(--ink-faint);
+  margin-top:.28rem;
+}
+.col .m > span + span::before{
+  content:"·";
+  margin-right:.45rem;
+}
+
+.col--links li{margin-bottom:.55rem;}
+
+/* --- case-study page furniture ------------------------------------------- */
+.case-head{
+  border-bottom:1px solid var(--rule);
+  padding-bottom:1.6rem;
+  margin-bottom:2.2rem;
+}
+.case-head .dek{
+  font-size:1.05rem;
+  line-height:1.6;
+  color:var(--ink-soft);
+  margin:.5rem 0 1rem;
+}
+.case-meta{
+  font-family:var(--mono);
+  font-size:.76rem;
+  color:var(--ink-faint);
+  display:flex;
+  flex-wrap:wrap;
+  gap:.3rem 1rem;
+}
+
+.section{margin:0 0 2.6rem;}
+.section:last-child{margin-bottom:0;}
+
+/* Numbers strip. Deliberately capped at 3-4 per page; a wall of stat tiles
+   reads as a pitch deck, and half of these have caveats that need the prose. */
+/* Flex rather than grid, deliberately. With auto-fit grid columns, four tiles
+   in a three-column row leave the fourth alone beside a dead cell, and because
+   the 1px "borders" are really the container background showing through the
+   gaps, that empty cell renders as a grey block. Flex makes the items on a
+   short final row grow to fill the width instead. */
+.figures{
+  display:flex;
+  flex-wrap:wrap;
+  gap:1px;
+  background:var(--rule);
+  border:1px solid var(--rule);
+  margin:1.6rem 0 1.9rem;
+}
+.figure{flex:1 1 11rem; background:var(--paper); padding:1.1rem 1.2rem;}
+.figure .n{
+  font-family:var(--serif);
+  font-size:1.6rem;
+  font-weight:600;
+  color:var(--accent);
+  letter-spacing:-0.01em;
+  line-height:1.15;
+  display:block;
+  margin-bottom:.2rem;
+}
+.figure .l{
+  font-size:.82rem;
+  line-height:1.45;
+  color:var(--ink-soft);
+}
+
+/* Body list used inside case studies. */
+ul.list{margin:0 0 1.05rem; padding-left:1.15rem;}
+ul.list li{margin-bottom:.55rem; color:var(--ink-soft); line-height:1.6;}
+ul.list li::marker{color:var(--accent);}
+ul.list li strong{color:var(--ink);}
+ul.list li:last-child{margin-bottom:0;}
+
+/* System entry inside the Punch page. */
+.system{
+  border-top:1px solid var(--rule);
+  padding:1.45rem 0;
+}
+.system:last-of-type{border-bottom:1px solid var(--rule);}
+.system-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:1rem;
+  flex-wrap:wrap;
+  margin-bottom:.45rem;
+}
+.system-name{font-family:var(--serif); font-size:1.1rem; font-weight:600; color:var(--ink);}
+.system-tag{
+  font-family:var(--mono);
+  font-size:.71rem;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  color:var(--ink-faint);
+}
+.system p{font-size:.94rem; color:var(--ink-soft); margin-bottom:.6rem;}
+.system p:last-child{margin-bottom:0;}
+
+/* The honesty callout. This is the most load-bearing component on the site:
+   every case study carries one, and it always states the thing that did not
+   work. Styled to read as part of the page, not as a disclaimer to skip. */
+.caveat{
+  border-left:3px solid var(--accent);
+  background:var(--accent-soft);
+  padding:1rem 1.25rem;
+  margin:1.5rem 0;
+  font-size:.92rem;
+  line-height:1.6;
+  color:var(--ink-soft);
+}
+.caveat .caveat-label{
+  display:block;
+  font-family:var(--mono);
+  font-size:.7rem;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin-bottom:.4rem;
+  font-weight:600;
+}
+.caveat strong{color:var(--ink);}
+.caveat p:last-child{margin-bottom:0;}
+
+/* Pull quote. */
+.pull{
+  font-family:var(--serif);
+  font-size:1.15rem;
+  line-height:1.5;
+  color:var(--ink);
+  border-left:3px solid var(--rule);
+  padding-left:1.25rem;
+  margin:1.8rem 0;
+  font-style:italic;
+}
+
+/* Back link at the foot of a case study. */
+.backlink{
+  display:inline-block;
+  margin-top:2.5rem;
+  font-family:var(--mono);
+  font-size:.8rem;
+  color:var(--ink-faint);
+  text-decoration:none;
+  border-bottom:1px solid var(--rule);
+}
+.backlink:hover{color:var(--accent); border-color:var(--accent);}
+
+/* Stack of related links. */
+.also{
+  border-top:1px solid var(--rule);
+  margin-top:3rem;
+  padding-top:1.4rem;
+}
+.also .eyebrow{margin-bottom:.7rem;}
+.also ul{list-style:none; margin:0; padding:0;}
+.also li{margin-bottom:.4rem;}
+.also a{color:var(--ink-soft); text-decoration:none; border-bottom:1px solid var(--rule);}
+.also a:hover{color:var(--accent); border-color:var(--accent);}
+
+/* --- responsive ---------------------------------------------------------- */
+@media (max-width:860px){
+  /* Links is the first column to lose: it is four short items and reads fine
+     as a row under the other two. Work and What I've built still need their
+     own columns because their meta lines are long. */
+  .index{grid-template-columns:1fr 1.3fr; gap:2rem;}
+  .col--links{grid-column:1 / -1; border-top:1px solid var(--rule); padding-top:1.4rem;}
+  .col--links ul{display:flex; flex-wrap:wrap; gap:1.2rem;}
+  .col--links li{margin-bottom:0;}
+}
+@media (max-width:620px){
+  .page{padding:2.4rem 0 3rem;}
+  .card-page{padding:2.8rem 0 3.2rem;}
+  /* Full stack. Two columns at phone width give the meta lines about 20
+     characters and they hyphenate into a ladder. */
+  .index{grid-template-columns:1fr; gap:2.2rem;}
+  .col--links{border-top:1px solid var(--rule); padding-top:1.4rem;}
+  .bio{font-size:.98rem; margin-bottom:2.6rem;}
+  /* Exactly two up on phones. A flex-basis in rem is not enough here: at 500px
+     three 8rem tiles still fit on one row and each label wraps to six lines.
+     Half the container minus the 1px gap forces the break at two. */
+  .figure{flex-basis:calc(50% - 1px);}
+  .pull{font-size:1.05rem; padding-left:1rem;}
+}
+@media (max-width:400px){
+  .figure{flex-basis:100%;}
+}
+
+/* --- print ---------------------------------------------------------------
+   Pin to the light palette. Specificity must beat the dark-theme selectors
+   above (0,2,0) or printing from a dark-mode browser inverts the page. Same
+   bug that was fixed in the resume; same fix.
+-------------------------------------------------------------------------- */
+@media print{
+  :root, :root[data-theme="dark"], :root:not([data-theme="light"]){
+    --paper:#fff; --paper-edge:#fff; --ink:#22241F; --ink-soft:#4B4E45;
+    --ink-faint:#6A6E62; --rule:#D3D6CC; --accent:#1F5C42;
+    --accent-soft:#F2F6F3;
+  }
+  @page{margin:15mm;}
+  body{background:#fff; -webkit-print-color-adjust:exact; print-color-adjust:exact;}
+  .masthead, .nav, .backlink, .also{display:none;}
+  .wrap{max-width:none; padding:0;}
+  a{text-decoration:none; color:var(--ink);}
+  .figure, .system, .col li{break-inside:avoid;}
+  h1,h2,h3{break-after:avoid;}
+}
