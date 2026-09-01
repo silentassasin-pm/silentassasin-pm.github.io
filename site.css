@@ -218,11 +218,14 @@ strong{font-weight:600; color:var(--ink);}
    themselves makes a paragraph this long much harder to scan. */
 .bio{
   max-width:34rem;
-  margin:0 auto 3.4rem;
+  /* Tight gap between the two bio paragraphs; the last one carries the
+     full run-out to the index below. */
+  margin:0 auto 1.15rem;
   font-size:1.02rem;
   line-height:1.7;
   color:var(--ink-soft);
 }
+.bio:last-of-type{margin-bottom:3.4rem;}
 .bio a{color:var(--ink); text-decoration:underline; text-underline-offset:3px;}
 .bio a:hover{color:var(--accent);}
 
